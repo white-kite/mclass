@@ -8,6 +8,9 @@ WORKDIR /app
 # (나중에 demo.snapshot을 app으로 바꿔서 빌드할것임..)
 COPY app.jar app.jar
 
+# 이걸 위해서는 설정이 더 필요하나 시간 관계 상 주석,, 
+#COPY application-prod.properties /app/application.properties
+
 # 실행 포트 지정
 EXPOSE 8081
 
