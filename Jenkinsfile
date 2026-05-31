@@ -58,6 +58,8 @@ pipeline{
         stage('Remote Docker Build & Deploy'){
             steps {
                 sshagent (credentials : [env.SSH_CREDENTIALS_ID]) {
+                    // app.jar랑 dockerfile을 보내고 REMOTE_USER@REMOTE_HOST 들어가서 실행하겠다
+                    // cd REMOTE_DIR 하고 이미지가 계속 업데이트 되므로 기존 컨테이너 삭제(rm)하고 실행하기
                     sh """
 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${REMOTE_USER}@${REMOTE_HOST} << ENDSSH
     cd ${REMOTE_DIR} || exit 1
